@@ -1,4 +1,5 @@
 {
+<<<<<<< HEAD
   description = "My Personal NixOS Configuration";
   outputs =
     inputs@{ flake-parts, ... }:
@@ -164,6 +165,40 @@
     tmux-sessionx = {
       url = "github:omerxx/tmux-sessionx";
       inputs.nixpkgs.follows = "nixpkgs";
+=======
+  description = "Nixos config flake";
+     
+  inputs = {
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-24.11";
+
+    # disko = {
+    #   url = "github:nix-community/disko";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
+
+    # impermanence = {
+    #   url = "github:nix-community/impermanence";
+    # };
+
+    # home-manager = {
+    #   url = "github:nix-community/home-manager";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
+  };
+
+  outputs = inputs@{ self, nixpkgs, ... }: {
+    nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
+      system = "x86_64-linux";
+      specialArgs = { inherit inputs; };
+      modules = [
+        # inputs.disko.nixosModules.default
+        # (import ./disko.nix { device = "/dev/nvme0n1"; })
+        ./configuration.nix
+              
+        # inputs.home-manager.nixosModules.default
+        # inputs.impermanence.nixosModules.impermanence
+      ];
+>>>>>>> 8d43d6a (first commit)
     };
   };
 }

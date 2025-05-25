@@ -1,5 +1,6 @@
 {
   "nodes": {
+<<<<<<< HEAD
     "aquamarine": {
       "inputs": {
         "hyprutils": [
@@ -1929,15 +1930,29 @@
         "owner": "nixos",
         "repo": "nixpkgs",
         "rev": "5633bcff0c6162b9e4b5f1264264611e950c8ec7",
+=======
+    "nixpkgs": {
+      "locked": {
+        "lastModified": 1748037224,
+        "narHash": "sha256-92vihpZr6dwEMV6g98M5kHZIttrWahb9iRPBm1atcPk=",
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "f09dede81861f3a83f7f06641ead34f02f37597f",
+>>>>>>> 8d43d6a (first commit)
         "type": "github"
       },
       "original": {
         "owner": "nixos",
+<<<<<<< HEAD
         "ref": "nixos-unstable",
+=======
+        "ref": "nixos-24.11",
+>>>>>>> 8d43d6a (first commit)
         "repo": "nixpkgs",
         "type": "github"
       }
     },
+<<<<<<< HEAD
     "nixpkgs_13": {
       "locked": {
         "lastModified": 1723175592,
@@ -2937,6 +2952,11 @@
         "owner": "botder",
         "repo": "zulip-discord-css",
         "type": "github"
+=======
+    "root": {
+      "inputs": {
+        "nixpkgs": "nixpkgs"
+>>>>>>> 8d43d6a (first commit)
       }
     }
   },
