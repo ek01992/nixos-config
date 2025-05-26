@@ -36,10 +36,6 @@ let
 in
 {
   flake.nixosConfigurations = {
-    vm = nixosGenerator "vm" "x86_64-linux" {
-      username = "vm";
-      userEmail = "vm@localhost";
-    };
     mach = nixosGenerator "mach" "x86_64-linux" {
       username = "erik";
       userEmail = "ek01992@proton.me";
