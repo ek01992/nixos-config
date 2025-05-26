@@ -45,7 +45,7 @@
         ./hosts
         inputs.git-hooks-nix.flakeModule
       ];
-      flake.disko = import ./disko
+      flake.disko = import ./disko;
       systems = import inputs.systems;
       perSystem = { pkgs, ... }: {
         # Per-system attributes can be defined here. The self' and inputs'
