@@ -1,60 +1,48 @@
-# Nix configurations for home-manager
 {
   pkgs,
   inputs,
+  self,
   opts,
-  lib,
   ...
 }:
-with lib;
 {
-  imports = [
-    inputs.nix-index-database.hmModules.nix-index
-  ];
 
-  config = {
-    nix.settings = {
+  nixpkgs.overlays = [ inputs.nix-alien.overlays.default ];
+  environment.systemPackages = with pkgs; [ nix-alien ];
+  nixpkgs.config.allowUnfree = true;
+  # execute shebangs that assume hardcoded shell paths
+  services.envfs.enable = true;
+  programs.nix-ld.enable = true;
+  nix = {
+    settings = {
       experimental-features = [
         "nix-command"
         "flakes"
       ];
-      show-trace = true;
+      trusted-users = [ opts.username ];
+      auto-optimise-store = true;
+      warn-dirty = false;
+      use-xdg-base-directories = true;
+      substituters = [
+        "https://nix-community.cachix.org"
+      ];
+      trusted-public-keys = [
+        "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
+      ];
     };
-    home.sessionVariables.NIXPKGS_ALLOW_UNFREE = 1;
-    home.packages =
-      with pkgs;
-      [
-        nixfmt-rfc-style
-        nixpkgs-fmt
-        nixd
-        deadnix
-        statix
-        nurl
 
-      ]
-      ++ (with inputs.nsearch.packages.${pkgs.system}; [
-        nsearch
-        nrun
-        nshell
-      ]);
-    programs = {
-      # This tool will index all nix packages
-      # `nix-locate` command will be available to find packages/libraries
-      # `command-not-found` will be available in shell env
-      nix-index.enable = true;
-      nix-index-database.comma.enable = true;
-
-      # This will allow to use the default shell in `nix develop` and `nix-shell`
-      nix-your-shell.enable = true;
-
-      nh = {
-        enable = true;
-        clean = {
-          enable = true;
-          extraArgs = "--keep-since 4d --keep 3";
-        };
-        flake = "/home/${opts.username}/flake";
-      };
-    };
+    registry.nixpkgs.flake = inputs.nixpkgs; # Syncs the flake with nixpkgs
+    nixPath = [
+      "nixpkgs=/etc/nixpkgs/channels/nixpkgs"
+      "/nix/var/nix/profiles/per-user/root/channels"
+    ];
   };
+
+  systemd.tmpfiles.rules = [ "L+ /etc/nixpkgs/channels/nixpkgs - - - - ${pkgs.path}" ];
+  imports = [
+    inputs.determinate.nixosModules.default
+  ];
+  hm.imports = [
+    self.homeModules.nix
+  ];
 }
