@@ -34,7 +34,7 @@ with lib;
   };
 
   ndots = {
-    sec.askPass = false;
+    # sec.askPass = false;
     disk.device = "/dev/nvme0n1";
     # hardware.opentabletdriver = false;
     disk.impermanence = true;
