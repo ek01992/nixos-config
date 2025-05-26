@@ -4,5 +4,4 @@
   nix = ./nix;
   shell = ./shell;
   home = ./home.nix;
-  nixos = ./nixos;
 }
