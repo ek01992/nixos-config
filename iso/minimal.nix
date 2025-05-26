@@ -10,6 +10,7 @@
 {
   imports = [
     "${modulesPath}/installer/cd-dvd/installation-cd-minimal.nix"
+    self.nixosMoudles.home-manager
   ];
 
   nix.settings.experimental-features = [
