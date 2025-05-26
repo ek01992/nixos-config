@@ -42,7 +42,7 @@ with lib;
     networking.firewall = false;
     networking.stevenblack = false;
     networking.ssh = true;
-    boot.secureboot = false;
+    # boot.secureboot = false;
     networking.timezone = "America/Chicago";
   };
 
