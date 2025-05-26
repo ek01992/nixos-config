@@ -9,10 +9,6 @@
       url = "github:nix-community/disko";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    git-hooks-nix = {
-      url = "github:cachix/git-hooks.nix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
 
     home-manager = {
       url = "github:nix-community/home-manager";
@@ -29,7 +25,6 @@
         ./iso/default.nix
         # ./modules
         # ./hosts
-        inputs.git-hooks-nix.flakeModule
       ];
       flake.disko = import ./disko/default.nix;
       systems = import inputs.systems;
@@ -41,7 +36,6 @@
         # Equivalent to  inputs'.nixpkgs.legacyPackages.hello;
         # packages.default = pkgs.git;
         # packages = import ./pkgs { inherit pkgs; };
-        pre-commit.settings.hooks.nixfmt-rfc-style.enable = true;
       };
     };
 }
