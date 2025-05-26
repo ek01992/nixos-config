@@ -38,7 +38,7 @@ with lib;
     disk.device = "/dev/nvme0n1";
     # hardware.opentabletdriver = false;
     disk.impermanence = true;
-    disk.encrypted = false;
+    # disk.encrypted = false;
     networking.firewall = false;
     networking.stevenblack = false;
     networking.ssh = true;
