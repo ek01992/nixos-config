@@ -36,7 +36,7 @@ with lib;
   ndots = {
     sec.askPass = false;
     disk.device = "/dev/nvme0n1";
-    hardware.opentabletdriver = false;
+    # hardware.opentabletdriver = false;
     disk.impermanence = true;
     disk.encrypted = false;
     networking.firewall = false;
