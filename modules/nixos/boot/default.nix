@@ -57,15 +57,5 @@ in
         ];
       };
     })
-
-    (mkIf cfg.secureboot {
-      boot = {
-        loader.systemd-boot.enable = mkForce false;
-        lanzaboote = {
-          enable = true;
-          pkiBundle = "/etc/secureboot";
-        };
-      };
-    })
   ];
 }
