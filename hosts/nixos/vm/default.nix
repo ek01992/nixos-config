@@ -19,9 +19,7 @@ with lib;
       self.nixosModules.users
       self.nixosModules.shell
       self.nixosModules.intel
-      self.nixosModules.sops
       self.nixosModules.nix
-      self.nixosModules.utils
       self.nixosModules.hardware
       self.nixosModules.networking
       self.nixosModules.home-manager
@@ -30,9 +28,6 @@ with lib;
     ];
 
   hm.imports = [
-    self.homeModules.editor
-    self.homeModules.utils
-    self.homeModules.sops
     self.homeModules.nixos
   ];
 
@@ -44,11 +39,11 @@ with lib;
   ndots = {
     sec.askPass = false;
     disk.device = "/dev/vda";
-    hardware.opentabletdriver = true;
+    hardware.opentabletdriver = false;
     disk.impermanence = true;
-    disk.encrypted = true;
+    disk.encrypted = false;
     users.password = "virt";
-    networking.firewall = true;
+    networking.firewall = false;
     networking.ssh = true;
   };
 
