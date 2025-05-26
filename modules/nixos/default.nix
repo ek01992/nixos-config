@@ -8,4 +8,3 @@
   hardware = ./hardware;
   networking = ./networking;
   home-manager = ./home-manager;
-  users = ./users;
