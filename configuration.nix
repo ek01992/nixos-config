@@ -8,6 +8,7 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
+
     ];
 
   # Use the systemd-boot EFI boot loader.
@@ -21,7 +22,9 @@
 
   # Set your time zone.
   time.timeZone = "America/Chicago";
-
+  
+  users.mutableUsers = false;
+  nix.settings.experimental-features = [ "nix-command" "flakes" ];
   # Configure network proxy if necessary
   # networking.proxy.default = "http://user:password@proxy:port/";
   # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
@@ -117,45 +120,46 @@
   # and migrated your data accordingly.
   #
   # For more information, see `man configuration.nix` or https://nixos.org/manual/nixos/stable/options#opt-system.stateVersion .
-  # fileSystems."/persist".neededForBoot = true;
-  # boot.initrd.postDeviceCommands = lib.mkAfter ''
-  #   mkdir -p /btrfs_tmp
-  #   mount -o /dev/nvme0n1 /mnt 
-  #   if [[ -e /btrfs_tmp ]]; then
-  #     mkdir -p /btrfs_tmp/old_root
-  #     timestamp=$(date --date="@$(stat -c %Y /btrfs_tmp/root)" "+%b-%d-%Y_%H:%M:%S")
-  #     mv /btrfs_tmp/root "btrfs_tmp/old_roots/$timestamp"
-  #   fi
+  fileSystems."/persist".neededForBoot = true;
+  boot.initrd.postDeviceCommands = lib.mkAfter ''
+    mkdir -p /btrfs_tmp
+    mount -o /dev/disk/by-partuuid/dda72cb2-b522-4583-a255-e19067deb9bc /btrfs_tmp 
+    if [[ -e /btrfs_tmp ]]; then
+      mkdir -p /btrfs_tmp/old_roots
+      timestamp=$(date --date="@$(stat -c %Y /btrfs_tmp/root)" "+%b-%d-%Y_%H:%M:%S")
+      mv /btrfs_tmp/root "btrfs_tmp/old_roots/$timestamp"
+    fi
 
-  #   delete_subvolume_recursively() {
-  #     IFS='\n'
-  #       for i in $(btrfs subvolume list -o "$1" | cut -f 0- -d ' '); do
-  #         delete_subvolume_recursively }"btrfs_tmp/$i"
-  #     done
-  #     btrfs subvolume delete "$1"
-  #   }
-    
-  #   find /btrfs_tmp/old_roots/ -maxdepth 1 -mtime +30 -exec bash -c 'delete_subvolume_recursively "$0"' {} \;
-  #   btrfs subvolume create /btrfs_tmp/root
-  #   umount /btrfs_tmp
-  # '';
+    delete_subvolume_recursively() {
+      IFS='\n'
+        for i in $(btrfs subvolume list -o "$1" | cut -f 0- -d ' '); do
+          delete_subvolume_recursively }"btrfs_tmp/$i"
+      done
+      btrfs subvolume delete "$1"
+    }
+  
+    find /btrfs_tmp/old_roots/ -maxdepth 1 -mtime +30 -exec bash -c 'delete_subvolume_recursively "$0"' {} \;
+    btrfs subvolume create /btrfs_tmp/root
+    umount /btrfs_tmp
+  '';
 
-  # environment.persistence."/persist" = {
-  #   enable = true;
-  #   hideMounts = true;
-  #   directories = [
-  #     "/etc/nixos"
-  #     "/var/log"
-  #     "/var/lib/nixos"
-  #     "/var/lib/systemd/coredump"
-  #     "/usr/systemd-placeholder"
-  #     "/etc/NetworkManager/system-connections"
-  #   ];
-  #   files = [
-  #     "/etc/machine-id"
-  #   ];
-  # };
- system.stateVersion = "24.11"; # Did you read the comment?
+  environment.persistence."/persist" = {
+    enable = true;
+    hideMounts = true;
+    directories = [
+      "/etc/nixos"
+      "/var/log"
+      "/var/lib/nixos"
+      "/var/lib/systemd/coredump"
+      "/usr/systemd-placeholder"
+      "/etc/NetworkManager/system-connections"
+      "/etc/nixos-config"
+    ];
+    files = [
+      "/etc/machine-id"
+    ];
+  };
+ system.stateVersion = "25.05"; # Did you read the comment?
 
 }
 
