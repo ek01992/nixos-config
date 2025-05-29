@@ -2,10 +2,13 @@
 #
 # This module defines the core configuration for the 'xps' host.
 # Thanks to 'specialArgs' in flake.nix, 'inputs' is available here.
-{ config, pkgs, lib, inputs, ... }:
+{ config, pkgs, lib, inputs, outputs,... }:
 
 {
   # --- IMPORTS ---
+  imports = [
+    inputs.impermanence.nixosModules.impermanence
+  ];
 
   # --- BOOTLOADER ---
   # Configure how the system boots. systemd-boot is common for UEFI.

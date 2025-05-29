@@ -23,25 +23,27 @@
     };
   };
 
-  outputs = { self, nixpkgs, disko, home-manager, impermanence, ... }@inputs: {
-
+  outputs = { self, nixpkgs, disko, home-manager, impermanence, ... } @ inputs: 
+  let
+    inherit (self) outputs;
+    # Supported systems for your flake packages, shell, etc.
+    systems = [
+      "aarch64-linux"
+      "i686-linux"
+      "x86_64-linux"
+      "aarch64-darwin"
+      "x86_64-darwin"
+    ];
+    # This is a function that generates an attribute by calling a function you
+    # pass to it, with each system as an argument
+    forAllSystems = nixpkgs.lib.genAttrs systems;
+  in {
+    packages = forAllSystems (system: import ./pkgs nixpkgs.legacyPackages.${system});
     nixosConfigurations = {
       xps = nixpkgs.lib.nixosSystem {
-        system = "x86_64-linux";
-        specialArgs = { inherit inputs; }; # Pass all inputs down.
+        specialArgs = { inherit inputs outputs; }; # Pass all inputs down.
         modules = [
-          disko.nixosModules.default
-          ./hosts/xps/partition.nix
           ./hosts/xps/configuration.nix
-          ./modules/common.nix
-          home-manager.nixosModules.home-manager
-          ./modules/users/erik.nix
-
-          {
-            home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
-            home-manager.extraSpecialArgs = { inherit inputs; };
-          }
         ];
       };
     };
