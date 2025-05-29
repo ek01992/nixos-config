@@ -6,7 +6,7 @@
     # --- BTRFS SNAPSHOT ROLLBACK SCRIPT ---
     # Runs *before* the main root is mounted. Archives the old 'root'
     # subvolume and creates a fresh one.
-
+    
     # Enable debugging output in initrd logs (check with 'journalctl')
     set -x
 
@@ -52,7 +52,7 @@
             sub_list+=( "/btrfs_tmp/$(echo "$line" | cut -f 9- -d ' ')" )
         done < <(btrfs subvolume list -o "$subvol_path" | grep -v " $subvol_path\$")
 
-        for i in "${sub_list[@]}"; do
+        for i in "''${sub_list[@]}"; do
             delete_subvolume_recursively "$i"
         done
 
