@@ -1,11 +1,14 @@
 # modules/common.nix
 { config, pkgs, lib, inputs, ... }: {
   imports = [ inputs.impermanence.nixosModules.impermanence ];
-  # --- BTRFS SNAPSHOT ROLLBACK SCRIPT ---
-  # Runs *before* the main root is mounted. Archives the old 'root'
-  # subvolume and creates a fresh one.
+
   boot.initrd.postDeviceCommands = lib.mkBefore ''
-    set -x # Enable debugging output in initrd logs (check with 'journalctl')
+    # --- BTRFS SNAPSHOT ROLLBACK SCRIPT ---
+    # Runs *before* the main root is mounted. Archives the old 'root'
+    # subvolume and creates a fresh one.
+    
+    # Enable debugging output in initrd logs (check with 'journalctl')
+    set -x
 
     # Define the BTRFS device. WARNING: Hardcoded based on disko.nix.
     BTRFS_DEV="/dev/disk/by-partlabel/disk-main-root"
