@@ -1,7 +1,7 @@
 # modules/common.nix
 { config, pkgs, lib, inputs, ... }: {
   imports = [ inputs.impermanence.nixosModules.impermanence ];
-  
+  /*
   boot.initrd.postDeviceCommands = lib.mkBefore ''
     # --- BTRFS SNAPSHOT ROLLBACK SCRIPT ---
     # Runs *before* the main root is mounted. Archives the old 'root'
@@ -74,20 +74,20 @@
     echo "BTRFS root rollback complete."
     set +x
   '';
+  */
   
   # --- IMPERMANENCE (System-Level) ---
-  # THIS STAYS! It is still needed to link /persist data into the new /root.
   environment.persistence."/persist" = {
     directories = [
       "/etc/ssh"
       "/var/log"
       "/var/lib"
       "/etc/nix"
+      "/etc/nixos"
       "/etc/nixos-config"
     ];
     files = [
       "/etc/machine-id"
-      # ... (keep your other entries) ...
     ];
   };
 
