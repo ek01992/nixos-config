@@ -17,10 +17,7 @@
     };
 
     # Add impermanence.
-    impermanence = {
-      url = "github:nix-community/impermanence";
-      # No 'follows' needed here, it uses its own nixpkgs usually.
-    };
+    impermanence.url = "github:nix-community/impermanence";
   };
 
   outputs = { self, nixpkgs, disko, home-manager, impermanence, ... } @ inputs: 
