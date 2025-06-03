@@ -14,6 +14,7 @@
       directories = [
         "/var/lib/systemd"
         "/var/lib/nixos"
+        "/etc/nixos-config"
         "/var/log"
         "/srv"
       ];
