@@ -39,12 +39,6 @@
     fsType = "vfat";
   };
 
-  fileSystems."/media/storage" = {
-    device = "/dev/disk/by-label/storage";
-    fsType = "btrfs";
-    options = ["subvol=@" "noatime" "compress=zstd"];
-  };
-
   swapDevices = [
     {
       device = "/swap/swapfile";
