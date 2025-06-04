@@ -1,4 +1,7 @@
-{config, ...}: let
+{
+  config, 
+  ...
+}: let
   hostname = config.networking.hostName;
 in {
   boot.initrd = {

@@ -3,18 +3,20 @@
   config,
   ...
 }: let
+  userName = "erik";
+  userHome = "/home/${userName}";
   ifTheyExist = groups:
     builtins.filter (group: builtins.hasAttr group config.users.groups) groups;
 in {
   users.mutableUsers = false;
-  users.groups.erik.gid = 1000;
-  users.users.erik = {
+  users.groups.${userName}.gid = 1000;
+  users.users.${userName} = {
     uid = 1000;
     isNormalUser = true;
-    home = "/home/erik";
+    home = userHome;
     createHome = true;
     shell = pkgs.bash;
-    group = "erik";
+    group = userName;
     extraGroups =
       [
         "wheel"
@@ -33,5 +35,5 @@ in {
     packages = with pkgs; [home-manager];
   };
 
-  home-manager.users.erik = import ../../../../home/erik/${config.networking.hostName};
+  home-manager.users.${userName} = import ../../../../home/${userName}/${config.networking.hostName};
 }
