@@ -6,13 +6,8 @@
     ./fzf
     ./gh
     ./git
-    ./gpg
     ./lazygit
     ./neovim
-    ./openssh
-    ./nitch
-    ./starship
-    ./tmux
   ];
 
   home.packages = with pkgs; [
