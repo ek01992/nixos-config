@@ -17,6 +17,18 @@
     initialPassword = "temp";
     createHome = true;
     home = "/home/erik";
+    openssh.authorizedKeys.keys = [
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPakom6FvoSpBc0nmunHQUZwQI9VtS52i4W4WLuiUMpc ek01992@proton.me"
+    ];
+  };
+  users.mutableUsers = false;
+
+  services.openssh = {
+    enable = true;
+    settings = {
+      PermitRootLogin = "prohibit-password";
+      PasswordAuthentication = false;
+    };
   };
 
   home-manager.users.erik = {
