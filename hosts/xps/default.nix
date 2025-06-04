@@ -2,7 +2,7 @@
   imports = [
     ./hardware-configuration.nix
     ./services
-
+    ../common/users/erik
     ../common/global
   ];
 

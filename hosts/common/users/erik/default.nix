@@ -11,6 +11,8 @@ in {
   users.users.erik = {
     uid = 1000;
     isNormalUser = true;
+    home = "/home/erik";
+    createHome = true;
     shell = pkgs.bash;
     group = "erik";
     extraGroups =
