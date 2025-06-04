@@ -44,17 +44,7 @@
     nixosConfigurations = {
       xps = lib.nixosSystem {
         specialArgs = {inherit inputs outputs;};
-        modules = [
-          ./hosts/xps
-        ];
-      };
-    };
-
-    homeConfigurations = {
-      "erik@xps" = lib.homeManagerConfiguration {
-        modules = [./home/erik/xps];
-        extraSpecialArgs = {inherit inputs outputs;};
-        pkgs = pkgsFor.x86_64-linux;
+        modules = [./hosts/xps];
       };
     };
   };
