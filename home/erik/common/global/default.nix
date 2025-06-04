@@ -37,6 +37,7 @@
         "documents"
         "downloads"
         "music"
+        "nixos-config"
         "pictures"
         "public"
         "templates"
