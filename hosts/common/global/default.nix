@@ -39,7 +39,7 @@
       bashInteractive
       btrfs-progs
       coreutils
-      ffmpeg-full
+      ffmpeg
       file
       git
       jq
