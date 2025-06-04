@@ -18,6 +18,9 @@
         "/var/log"
         "/srv"
       ];
+      users.erik = {
+        home = "/home/erik";
+      };
     };
   };
 
