@@ -7,11 +7,6 @@
       nixd
       home-manager
       git
-
-      age
-      gnupg
-      sops
-      ssh-to-age
     ];
   };
 }
