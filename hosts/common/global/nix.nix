@@ -9,9 +9,9 @@ in {
     settings = {
       trusted-users = ["root" "@wheel"];
       auto-optimise-store = lib.mkDefault true;
-      experimental-features = ["nix-command" "flakes" "ca-derivations"];
+      experimental-features = ["nix-command" "flakes"];
       warn-dirty = false;
-      system-features = ["kvm" "benchmark" "big-parallel" "nixos-test"];
+      system-features = [""];
       flake-registry = "";
     };
     gc = {
@@ -22,13 +22,5 @@ in {
     # Add each flake input as a registry and nix_path
     registry = lib.mapAttrs (_: flake: {inherit flake;}) flakeInputs;
     nixPath = lib.mapAttrsToList (n: _: "${n}=flake:${n}") flakeInputs;
-  };
-
-  services.openssh = {
-    enable = true;
-    settings = {
-      PermitRootLogin = "prohibit-password";
-      PasswordAuthentication = false;
-    };
   };
 }

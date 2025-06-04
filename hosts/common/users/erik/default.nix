@@ -23,17 +23,12 @@ in {
         "video"
       ]
       ++ ifTheyExist [
-        "adbusers"
-        "docker"
-        "libvirtd"
-        "minecraft"
-        "mysql"
-        "network"
-        "podman"
-        "wireshark"
+        "networkmanager"
       ];
 
-    openssh.authorizedKeys.keys = ["ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPakom6FvoSpBc0nmunHQUZwQI9VtS52i4W4WLuiUMpc ek01992@proton.me"];
+    openssh.authorizedKeys.keys = [
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPakom6FvoSpBc0nmunHQUZwQI9VtS52i4W4WLuiUMpc ek01992@proton.me"
+    ];
     initialPassword = "temp";
     packages = with pkgs; [home-manager];
   };
