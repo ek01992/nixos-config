@@ -21,7 +21,7 @@
 
   home-manager.users.erik = {
     imports = [
-      ../home/erik/xps
+      ../../home/erik/xps
     ];
   };
 

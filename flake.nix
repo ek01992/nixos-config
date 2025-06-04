@@ -44,7 +44,9 @@
     nixosConfigurations = {
       xps = lib.nixosSystem {
         specialArgs = {inherit inputs outputs;};
-        modules = [./hosts/xps];
+        modules = [
+          ./hosts/xps
+        ];
       };
     };
   };
