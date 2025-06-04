@@ -20,6 +20,14 @@ in {
       options = "--delete-older-than +3";
     };
 
+    services.openssh = {
+      enable = true;
+      settings = {
+        PermitRootLogin = "prohibit-password";
+        PasswordAuthentication = false;
+      };
+    };
+
     # Add each flake input as a registry and nix_path
     registry = lib.mapAttrs (_: flake: {inherit flake;}) flakeInputs;
     nixPath = lib.mapAttrsToList (n: _: "${n}=flake:${n}") flakeInputs;
