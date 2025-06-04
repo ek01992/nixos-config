@@ -1,15 +1,10 @@
 {config, ...}: {
   programs.git = {
     enable = true;
-    userName = "averagebit";
-    userEmail = "averagebit@pm.me";
+    userName = "ek01992";
+    userEmail = "ek01992@proton.me";
     includes = [{path = "~/.git/extra-config";}];
     aliases = {co = "checkout";};
-
-    signing = {
-      key = "202C2696DF698259";
-      signByDefault = true;
-    };
 
     extraConfig = {
       init.defaultBranch = "main";
@@ -21,7 +16,7 @@
       merge.conflictstyle = "diff3";
       branch.sort = "-committerdate";
       core = {
-        editor = "vi";
+        editor = "nvim";
         pager = "less";
       };
       lfs.enable = true;

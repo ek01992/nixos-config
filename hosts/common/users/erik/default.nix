@@ -37,6 +37,4 @@ in {
   };
 
   home-manager.users.erik = import ../../../../home/erik/${config.networking.hostName};
-
-  security.pam.services.swaylock = {};
 }
