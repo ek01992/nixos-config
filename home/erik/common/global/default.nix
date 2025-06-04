@@ -13,7 +13,6 @@
     ]
     ++ builtins.attrValues outputs.homeManagerModules;
 
-
   nix = {
     package = lib.mkDefault pkgs.nix;
     settings = {

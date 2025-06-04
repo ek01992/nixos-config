@@ -31,5 +31,4 @@ in {
       PasswordAuthentication = false;
     };
   };
-
 }
