@@ -50,7 +50,7 @@ printf "label: gpt\n,1500M,U,*\n,,L\n" | sfdisk "$DRIVE"
 
 log "Formatting partitions..."
 mkfs.fat -F 32 -n ESP "${DRIVE}p1"
-mkfs.btrfs -L "$HOST" "${DRIVE}p2"
+mkfs.btrfs -f -L "$HOST" "${DRIVE}p2"
 
 log "Creating BTRFS subvolumes..."
 mount "/dev/disk/by-label/$HOST" /mnt
