@@ -15,6 +15,7 @@
         "/var/lib/systemd"
         "/var/lib/nixos"
         "/etc/nixos-config"
+        "/etc/nixos"
         "/var/log"
         "/srv"
       ];
