@@ -1,6 +1,6 @@
 # flake.nix
 {
-  description = "Minimal, Modular NixOS Flake with Disko, Impermanence, and Home-Manager";
+  description = "Minimal, Modular NixOS Flake with Impermanence, and Home-Manager";
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";

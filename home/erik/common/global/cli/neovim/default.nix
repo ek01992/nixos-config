@@ -19,7 +19,7 @@
   };
 
   home.persistence = {
-    "/persist/${config.home.homeDirectory}".directories = [
+    "/persist${config.home.homeDirectory}".directories = [
       ".config/nvim"
       ".local/share/nvim"
       ".local/state/nvim"

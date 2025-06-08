@@ -8,6 +8,6 @@
     };
   };
   home.persistence = {
-    "/persist/${config.home.homeDirectory}".directories = [".config/gh"];
+    "/persist${config.home.homeDirectory}".directories = [".config/gh"];
   };
 }

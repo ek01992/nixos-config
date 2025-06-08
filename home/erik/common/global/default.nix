@@ -29,7 +29,7 @@
   };
 
   home.persistence = {
-    "/persist/home/erik" = {
+    "/persist${config.home.homeDirectory}" = {
       allowOther = true;
       directories = [
         "desktop"
