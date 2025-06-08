@@ -23,7 +23,7 @@
 
   home = {
     username = lib.mkDefault "erik";
-    homeDirectory = lib.mkDefault "/home/${config.home.username}";
+    homeDirectory = lib.mkDefault "/home/erik";
     sessionPath = ["$HOME/.local/bin"];
     sessionVariables = {NH_FLAKE = "$HOME/workspace/nixos";};
   };
