@@ -13,4 +13,5 @@
       ns = "nix-search-tv print | fzf --preview 'nix-search-tv preview {}' --scheme history";
     };
   };
+  home.persistence."/persist/home/erik".directories = [".local/state/bash"];
 }
