@@ -52,6 +52,9 @@ log "Formatting partitions..."
 mkfs.fat -F 32 -n ESP "${DRIVE}p1"
 mkfs.btrfs -f -L "$HOST" "${DRIVE}p2"
 
+log "Waiting for udev to settle..."
+udevadm settle
+
 log "Creating BTRFS subvolumes..."
 mount "/dev/disk/by-label/$HOST" /mnt
 btrfs subvolume create /mnt/@
