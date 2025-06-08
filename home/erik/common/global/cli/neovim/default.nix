@@ -18,11 +18,9 @@
     withRuby = true;
   };
 
-  home.persistence = {
-    "/persist${config.home.homeDirectory}".directories = [
-      ".config/nvim"
-      ".local/share/nvim"
-      ".local/state/nvim"
-    ];
-  };
+  home.persistence."/persist${config.home.homeDirectory}".directories = [
+    ".config/nvim"
+    ".local/share/nvim"
+    ".local/state/nvim"
+  ];
 }

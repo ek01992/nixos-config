@@ -7,7 +7,5 @@
       pager = "less";
     };
   };
-  home.persistence = {
-    "/persist${config.home.homeDirectory}".directories = [".config/gh"];
-  };
+  home.persistence."/persist${config.home.homeDirectory}".directories = [".config/gh"];
 }

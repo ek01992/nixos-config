@@ -1,4 +1,4 @@
-{pkgs, ...}: {
+{pkgs, config, ...}: {
   programs.bash = {
     enable = true;
     historyControl = ["erasedups" "ignorespace"];
