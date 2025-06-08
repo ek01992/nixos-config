@@ -94,7 +94,7 @@ git clone "$NIXOS_CONFIG_REPO" /mnt/etc/nixos
 cd /mnt/etc/nixos
 # It's good practice to update the flake inputs before installing.
 # Uncomment the next line if you want to use the latest dependencies.
-# nix flake update
+nix flake update
 
 log "Installing NixOS..."
 nixos-install --root /mnt --flake ".#$HOST" --no-root-passwd
