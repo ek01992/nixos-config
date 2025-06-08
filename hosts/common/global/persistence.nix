@@ -18,6 +18,7 @@
         "/etc/nixos"
         "/var/log"
         "/srv"
+        "/etc/ssh"
       ];
     };
   };

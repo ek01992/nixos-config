@@ -44,6 +44,7 @@
         "workspace"
         ".local/bin"
         ".local/share/nix"
+        ".ssh"
       ];
     };
   };
