@@ -67,7 +67,7 @@ umount /mnt
 log "Mounting filesystems for installation..."
 mount -o "compress=zstd,noatime,subvol=@" "/dev/disk/by-label/$HOST" /mnt
 mkdir -p /mnt/{boot,nix,persist,swap,etc}
-mount "/dev/disk/by-label/ESP" /mnt/boot
+mount -o umask=0077 /dev/disk/by-label/ESP /mnt/boot
 mount -o "compress=zstd,noatime,subvol=@nix" "/dev/disk/by-label/$HOST" /mnt/nix
 mount -o "compress=zstd,subvol=@persist" "/dev/disk/by-label/$HOST" /mnt/persist
 mount -o "noatime,subvol=@swap" "/dev/disk/by-label/$HOST" /mnt/swap
